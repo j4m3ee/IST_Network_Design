@@ -1,3 +1,3 @@
 # IST_Network_Design
-[x] OSPF
-[x] EIGRP
+* [x] OSPF
+* [x] EIGRP
