@@ -1,0 +1,46 @@
+enable
+conf terminal
+hostname Potato-Firewall
+enable password potato
+route outside 0.0.0.0 0.0.0.0 172.16.16.1
+object network inside-net
+subnet 172.16.1.0 255.255.255.248
+nat (inside,outside) dynamic interface
+exit
+class-map inspection_default
+match default-inspection-traffic
+exit
+policy-map global_policy
+class inspection_default
+inspect icmp
+inspect dns
+exit
+service-policy global_policy global
+username potato password bkkasapass
+aaa authentication ssh console LOCAL
+crypto key generate rsa modulus 1024
+ssh 172.16.1.0 255.255.255.248 inside
+int vlan 3
+ip addr 10.10.10.1 255.255.255.0
+no forward interface vlan 1
+nameif dmz
+security-level 70
+int e0/2 
+switchport access vlan 3
+object network dmz-server
+host 10.10.10.3
+nat (dmz,outside) static 172.16.16.4
+object network dmz-server-ftp
+host 10.10.10.4
+nat (dmz,outside) static 172.16.16.5
+exit
+access-list OUTSIDE-DMZ permit icmp any host 10.10.10.3
+access-list OUTSIDE-DMZ permit tcp any host 10.10.10.3 eq 80
+access-list OUTSIDE-DMZ permit icmp host 76.212.236.2 host 10.10.10.4
+access-list OUTSIDE-DMZ permit tcp host 76.212.236.2 host 10.10.10.4 eq ftp
+access-list OUTSIDE-DMZ permit icmp host 212.224.236.2 host 10.10.10.4
+access-list OUTSIDE-DMZ permit tcp host 212.224.236.2 host 10.10.10.4 eq ftp
+access-list OUTSIDE-DMZ permit icmp host 136.224.212.2 host 10.10.10.4
+access-list OUTSIDE-DMZ permit tcp host 136.224.212.2 host 10.10.10.4 eq ftp
+access-group OUTSIDE-DMZ in interface outside
+exit
