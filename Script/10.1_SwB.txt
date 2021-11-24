@@ -1,0 +1,25 @@
+enable
+conf terminal
+hostname SwitchB
+enable secret cisco
+interface vlan 1
+ip address 192.168.1.12 255.255.255.0
+no sh
+line vty 0
+password cisco
+login
+int r fa0/23-24
+switchport mode trunk
+exit
+vtp version 2
+vtp mode client
+vtp domain ce
+vtp password cisco
+int r fa0/1-10
+switchport mode access
+switchport access vlan 10
+int r fa0/11-20
+switchport mode access
+switchport access vlan 20
+exit
+ip default-gateway 192.168.1.254

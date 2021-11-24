@@ -1,0 +1,13 @@
+en
+conf t
+hostname ISPRouter
+int se0/0
+ip addr 161.246.1.254 255.255.255.0
+no sh
+int fa0/0
+ip addr 161.246.5.254 255.255.255.0
+no sh
+int fa0/1
+ip addr 161.246.6.254 255.255.255.0
+no sh
+exit
