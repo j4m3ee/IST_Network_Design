@@ -1,0 +1,39 @@
+=== TRUE Router ===
+router eigrp 123
+eigrp router-id 1.1.1.1
+network 76.212.236.0 0.0.0.7
+network 123.1.2.0 0.0.0.7
+network 123.1.17.0 0.0.0.3
+network 123.1.18.0 0.0.0.3
+no auto-summary
+exit
+
+=== AIS Router ===
+router eigrp 123
+eigrp router-id 2.2.2.2
+network 212.224.236.0 0.0.0.3
+network 123.1.16.0 0.0.0.3
+network 123.1.18.0 0.0.0.3
+network 10.9.8.0 0.0.0.7
+redistribute static
+no auto-summary
+exit
+
+=== TOT Router ===
+router eigrp 123
+eigrp router-id 3.3.3.3
+network 136.224.212.0 0.0.0.7
+network 123.1.16.0 0.0.0.3
+network 123.1.17.0 0.0.0.3
+network 123.1.8.0 0.0.0.7
+no auto-summary
+exit
+
+=== BKK-Router ===
+router eigrp 123
+eigrp router-id 5.5.5.5
+network 172.16.0.0 0.0.0.15
+network 123.1.2.0 0.0.0.7
+network 123.1.8.0 0.0.0.7
+no auto-summary
+exit

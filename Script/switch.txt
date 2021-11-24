@@ -1,0 +1,47 @@
+en
+conf t
+vlan 10
+name IT
+vlan 20
+name HR
+vlan 30
+name EN
+vlan 40
+name MAR
+vlan 50
+name FIN
+vlan 60
+name CS
+vlan 70
+name Native
+int vlan 10 
+ip add 192.168.1.98 255.255.255.240
+no shut
+int fa0/1
+switchport mode trunk
+ex
+int fa0/2
+switchport mode trunk
+ex
+vtp version 2
+vtp domain potato
+vtp password bkkvtppass
+vtp mode server
+end
+
+
+===========================
+client 
+
+
+int fa0/1
+switchport mode trunk
+ex
+int fa0/2
+switchport mode trunk
+ex
+vtp version 2
+vtp domain potato
+vtp password bkkvtppass
+vtp mode client
+end
