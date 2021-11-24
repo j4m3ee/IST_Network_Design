@@ -1,5 +1,6 @@
-en
-conf t
+=== SW-Server ===
+enable
+conf terminal
 vlan 10
 name IT
 vlan 20
@@ -30,9 +31,7 @@ vtp mode server
 end
 
 
-===========================
-client 
-
+=== SW-Client ===
 
 int fa0/1
 switchport mode trunk
