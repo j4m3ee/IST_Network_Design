@@ -246,3 +246,7 @@ PAT
 access-list 10 permit 192.168.1.0 0.0.0.255
 access-list 10 permit 10.10.10.0 0.0.0.15
 ip nat inside source list 10 interface Serial0/0/0 overload
+interface Serial0/0/0
+ip nat outside
+interface range gi0/0-1
+ip nat inside
