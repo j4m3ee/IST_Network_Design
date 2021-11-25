@@ -3,6 +3,7 @@ conf terminal
 hostname Potato-Firewall
 enable password potato
 route outside 0.0.0.0 0.0.0.0 172.16.16.1
+
 object network inside-net
 subnet 172.16.1.0 255.255.255.248
 nat (inside,outside) dynamic interface
@@ -16,10 +17,12 @@ inspect icmp
 inspect dns
 exit
 service-policy global_policy global
+
 username potato password bkkasapass
 aaa authentication ssh console LOCAL
 crypto key generate rsa modulus 1024
 ssh 172.16.1.0 255.255.255.248 inside
+
 int vlan 3
 ip addr 10.10.10.1 255.255.255.0
 no forward interface vlan 1
@@ -44,3 +47,4 @@ access-list OUTSIDE-DMZ permit icmp host 136.224.212.2 host 10.10.10.4
 access-list OUTSIDE-DMZ permit tcp host 136.224.212.2 host 10.10.10.4 eq ftp
 access-group OUTSIDE-DMZ in interface outside
 exit
+

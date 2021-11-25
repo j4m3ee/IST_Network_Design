@@ -1,0 +1,11 @@
+int range gi0/1-2 , fa0/1
+switchport mode access
+switchport port-security
+switchport port-security mac-address sticky
+switchport port-security maximum 1
+switchport port-security violation restrict
+vlan 10
+name native
+int range fa0/2-24
+switchport mode access
+switchport access vlan 10
