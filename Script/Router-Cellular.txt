@@ -7,7 +7,7 @@ no shut
 ex
 ip dhcp exclude 124.242.0.1
 ip dhcp pool TrueMoveH
-default-router 124.242.0
+default-router 124.242.0.1
 dns-server 8.8.8.8
 network 124.242.0.0 255.255.0.0
 ex
